@@ -3,18 +3,20 @@ from django.http  import HttpResponse,HttpResponseRedirect
 from .models import Neighbourhood,Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from .forms import ProfileForm
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def home(request):
     title='Neighbor'
-    return render(request,'NG/home.html',{'title':title})
+    profile = Profile.objects.all()
+    current_user=request.user
+    return render(request,'NG/home.html',{'title':title,'profile':profile,'current_user':current_user})
 @login_required(login_url='/accounts/login/')
 def profile(request,id):
    user_object = request.user
    current_user = Profile.objects.get(username__id=request.user.id)
    user = Profile.objects.get(username__id=id)
-   projects = Project.objects.all()
-   return render(request, "NG/profile.html", {"current_user":current_user,"projects":projects,"user":user,"user_object":user_object})
+   return render(request, "NG/profile.html", {"current_user":current_user,"user":user,"user_object":user_object})
 
 @login_required(login_url='/accounts/login/')
 def edit_profile(request):
@@ -27,4 +29,4 @@ def edit_profile(request):
            return redirect('profile')
    else:
        form=ProfileForm(instance=request.user.profile)
-   return render(request,'AW/edit_profile.html',locals())
+   return render(request,'NG/edit_profile.html',locals())

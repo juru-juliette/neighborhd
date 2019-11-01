@@ -7,3 +7,6 @@ urlpatterns=[
     url(r'^accounts/profile/(\d+)', views.profile, name='profile'),
     url(r'^accounts/edit_profile/', views.edit_profile, name='edit_profile'),
 ]
+## this references the location to the uploaded files.
+if settings.DEBUG:
+    urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -100,9 +100,7 @@
                 <a href="{% url 'home' %}">Home</a>
                 <a href="/accounts/register">Register/login</a>
 
-                <a href="" class="d-block">View Profile</a>
-                <a href="">Edit Profile</a>
-                <a href="">Add Project</a>
+                <a href="{%url 'profile' request.user.id %}" class="d-block">View Profile</a>
                 <a href="/accounts/password/change">Change Password</a>
                 <a href="/logout">Logout</a>
 
