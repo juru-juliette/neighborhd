@@ -50,6 +50,11 @@ class Neighbourhood(models.Model):
 
      def delete_neighbourhood(self):
        self.delete()
+class Business(models.Model):
+     name=models.CharField(max_length=100)
+     location=models.CharField(max_length=200)
+     neighbourhood=models.ForeignKey(Neighbourhood)
+     user=models.ForeignKey(User,on_delete=models.CASCADE)
 
 
     
