@@ -14,4 +14,4 @@ def profile(request,id):
    current_user = Profile.objects.get(username__id=request.user.id)
    user = Profile.objects.get(username__id=id)
    projects = Project.objects.all()
-   return render(request, "AW/profile.html", {"current_user":current_user,"projects":projects,"user":user,"user_object":user_object})
+   return render(request, "NG/profile.html", {"current_user":current_user,"projects":projects,"user":user,"user_object":user_object})
