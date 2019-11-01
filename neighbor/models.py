@@ -8,7 +8,12 @@ class Profile(models.Model):
     photo=models.ImageField(upload_to='pic/')
     bio=models.TextField()
     username=models.OneToOneField(User,on_delete=models.CASCADE,related_name="profile")
+    last_name=models.CharField(max_length=100)
+    location= models.CharField(max_length=100)
+    phone_number=models.IntegerField(null=True)
     email=models.EmailField()
+    
+    
     def save_profile(self):
         self.save()
     def delete_profile(self):
@@ -27,8 +32,19 @@ class Profile(models.Model):
 class Neighbourhood(models.Model):
      neighbourh_name=models.CharField(max_length=100)
      neighbourh_location= models.CharField(max_length=200)
-     occupants_counts=models.IntegerField(null=True)
+     occupants=models.IntegerField(null=True)
      profile=models.ForeignKey(Profile,null=True)
+     def __str__(self):
+        return self.name
+     @classmethod
+     def create_neighbourhood(cls,name,loc,occupants):
+        neighborhood=Neighborhood(name=name,location=loc,occupants=occupants)
+        return neighborhood
+     
+     @classmethod
+     def find_neighbourhood(cls,id):
+        neighborhood=cls.objects.get(id=id)
+        return neighborhood
      def save_neighbourhod(self):
          self.save()
 

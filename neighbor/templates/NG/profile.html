@@ -27,15 +27,18 @@ https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png
       {% endif %}
     </div>
     <div class="col-md-4">
-      <p class="mt-1 font-weight-bold font-italic">{{user.username.username}}</p>
+      <p class="mt-1 font-weight-bold font-italic">First name:{{user.username.username}}</p>
       {% if user == current_user %}
       <a href="{% url 'edit_profile' %}">
         <button class="btn btn-dark" type="button" name="button"><img src="https://img.icons8.com/color/48/000000/pencil.png(1 kB)
 https://img.icons8.com/color/48/000000/pencil.png
 " width="24">Edit Profile</button>
       </a>
-
-      <p>{{user.bio | safe}}</p>
+      <p>Last name:{{user.last_name}}</p>
+      <p>Phone number:0{{user.phone_number}}</p>
+      <p>Bio:{{user.bio | safe}}</p>
+      <p>Email:{{user.email}}</p>
+      
 
       <a href="/logout/">
         <button class="btn btn-danger" type="button" name="button"> <img src="https://img.icons8.com/metro/48/000000/shutdown.png(1 kB)
