@@ -1,0 +1,21 @@
+{%extends 'NG/base.html'%}
+{% load bootstrap3 %}
+{% load static%}
+{% block content %}
+{{block.super}}
+<script type="text/javascript" src="{%static 'js/neigh.js'%}"></script>
+{% block styles %}
+{% bootstrap_css %}
+
+{% endblock %}
+<style>
+    .top{
+        text-align: center;
+    }
+</style>
+
+<div class="top">
+    <h1>welcome to neighborhood site</h1>
+</div>
+
+{%endblock%}
