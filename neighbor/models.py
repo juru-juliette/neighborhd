@@ -65,7 +65,7 @@ class Business(models.Model):
         return business
 class Post(models.Model):
     title=models.CharField(max_length=100,null=True)
-    image=models.ImageField(upload_to = 'images/')
+    image=models.ImageField(upload_to = 'pic/')
     description=HTMLField()
     pub_date = models.DateTimeField(auto_now_add=True)
     profile=models.ForeignKey(Profile, null=True)

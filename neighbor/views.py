@@ -3,7 +3,7 @@ from django.http  import HttpResponse,HttpResponseRedirect
 from .models import Neighbourhood,Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .forms import ProfileForm
+from .forms import ProfileForm,PostForm
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def home(request):
@@ -35,7 +35,7 @@ def new_post(request):
     current_user = request.user
     profile = Profile.objects.get(user=current_user)
     if request.method == 'POST':
-        form = Postform(request.POST, request.FILES)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.user = current_user
@@ -44,5 +44,5 @@ def new_post(request):
         return redirect('home')
 
     else:
-        form = Postform()
+        form = PostForm()
     return render(request, 'NG/new_post.html', {"form": form})
