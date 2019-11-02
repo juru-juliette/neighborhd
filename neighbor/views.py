@@ -30,3 +30,19 @@ def edit_profile(request):
    else:
        form=ProfileForm(instance=request.user.profile)
    return render(request,'NG/edit_profile.html',locals())
+@login_required(login_url='/accounts/login/')
+def new_post(request):
+    current_user = request.user
+    profile = Profile.objects.get(user=current_user)
+    if request.method == 'POST':
+        form = Postform(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = current_user
+            post.profile=profile
+            post.save()
+        return redirect('home')
+
+    else:
+        form = Postform()
+    return render(request, 'NG/new_post.html', {"form": form})

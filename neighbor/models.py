@@ -13,7 +13,6 @@ class Profile(models.Model):
     phone_number=models.IntegerField(null=True)
     email=models.EmailField()
     
-    
     def save_profile(self):
         self.save()
     def delete_profile(self):
@@ -29,11 +28,13 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
       instance.profile.save()
+
 class Neighbourhood(models.Model):
      neighbourh_name=models.CharField(max_length=100)
      neighbourh_location= models.CharField(max_length=200)
      occupants=models.IntegerField(null=True)
      profile=models.ForeignKey(Profile,null=True)
+     
      def __str__(self):
         return self.name
      @classmethod
@@ -55,6 +56,26 @@ class Business(models.Model):
      location=models.CharField(max_length=200)
      neighbourhood=models.ForeignKey(Neighbourhood)
      user=models.ForeignKey(User,on_delete=models.CASCADE)
+     def __str__(self):
+        return self.name
+
+     @classmethod
+     def create_business(cls,name,loc,neighbor,email,phone):
+        business=Business(name=name,location=loc,neighborhood=neighbor,email=email,phone_number=phone)
+        return business
+class Post(models.Model):
+    title=models.CharField(max_length=100,null=True)
+    image=models.ImageField(upload_to = 'images/')
+    description=HTMLField()
+    pub_date = models.DateTimeField(auto_now_add=True)
+    profile=models.ForeignKey(Profile, null=True)
+    user=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+
+    def __str__(self):
+        return self.title
+
+
+
 
 
     
