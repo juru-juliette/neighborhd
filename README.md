@@ -26,7 +26,7 @@ Install dependancies that will create an environment for the app to run
 #### Create Database
 ```
 $ psql
-CREATE DATABASE the
+CREATE DATABASE neighbor
 ```
 
  #### Run initial Migrations
