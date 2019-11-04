@@ -3,9 +3,6 @@ this is application that allows you to be in the loop about everything happening
 # The neighborhood
 
 The neighborhood is a web-application which helps there users to know what's going on in their neighborhood.From contact information of different handyman to meeting announcements or even alerts.A user can create an account add also have a profile with his/her information.A user can also search for businesses around his neighborhood
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system. 
 
  #### Prerequisites
 
