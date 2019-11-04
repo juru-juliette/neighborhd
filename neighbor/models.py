@@ -72,6 +72,21 @@ class Post(models.Model):
     
     def __str__(self):
         return self.title
+class Health(models.Model):
+    name=models.CharField(max_length=100,null=True)
+    location=models.CharField(max_length=200,null=True)
+    neighborhood=models.OneToOneField(Neighborhood,null=True)
+    phone_number=models.IntegerField(null=True)
+
+    def __str__(self):
+        return self.name
+
+class Police(models.Model):
+    station_name=models.CharField(max_length=100,null=True)
+    location=models.CharField(max_length=200,null=True)
+    neighborhood=models.OneToOneField(Neighborhood,null=True)
+    phone_number=models.IntegerField(null=True)
+    
 
 
 
