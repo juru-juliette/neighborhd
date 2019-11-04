@@ -46,7 +46,7 @@ class Neighbourhood(models.Model):
      def find_neighbourhood(cls,id):
         neighborhood=cls.objects.get(id=id)
         return neighborhood
-     def save_neighbourhod(self):
+     def save_neighbourhood(self):
          self.save()
 
      def delete_neighbourhood(self):
@@ -72,21 +72,7 @@ class Post(models.Model):
     
     def __str__(self):
         return self.title
-class Health(models.Model):
-    name=models.CharField(max_length=100,null=True)
-    location=models.CharField(max_length=200,null=True)
-    neighborhood=models.OneToOneField(Neighborhood,null=True)
-    phone_number=models.IntegerField(null=True)
 
-    def __str__(self):
-        return self.name
-
-class Police(models.Model):
-    station_name=models.CharField(max_length=100,null=True)
-    location=models.CharField(max_length=200,null=True)
-    neighborhood=models.OneToOneField(Neighborhood,null=True)
-    phone_number=models.IntegerField(null=True)
-    
 
 
 
