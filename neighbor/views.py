@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http  import HttpResponse,HttpResponseRedirect
-from .models import Neighbourhood,Profile
+from .models import Neighbourhood,Profile,Post
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .forms import ProfileForm,PostForm
@@ -10,7 +10,8 @@ def home(request):
     title='Neighbor'
     profile = Profile.objects.all()
     current_user=request.user
-    return render(request,'NG/home.html',{'title':title,'profile':profile,'current_user':current_user})
+    post=Post.objects.all()
+    return render(request,'NG/home.html',{'title':title,'profile':profile,'current_user':current_user,'post':post})
 @login_required(login_url='/accounts/login/')
 def profile(request,id):
    user_object = request.user
@@ -31,18 +32,17 @@ def edit_profile(request):
        form=ProfileForm(instance=request.user.profile)
    return render(request,'NG/edit_profile.html',locals())
 @login_required(login_url='/accounts/login/')
-def new_post(request):
+def post(request):
     current_user = request.user
-    profile = Profile.objects.get(user=current_user)
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.user = current_user
-            post.profile=profile
+            
             post.save()
         return redirect('home')
 
     else:
         form = PostForm()
-    return render(request, 'NG/new_post.html', {"form": form})
+    return render(request, 'NG/post.html', {"form": form})
