@@ -31,7 +31,7 @@ CREATE DATABASE the
 
  #### Run initial Migrations
 ```
-$ python manage.py makemigrations theNeighborhood
+$ python manage.py makemigrations Neighbor
 $ python3.6 manage.py migrate
 ```
 
@@ -43,7 +43,7 @@ $ python3.6 manage.py runserver
 ## Running the tests
 
 ```
-$ python3.6 manage.py test theNeighborhood
+$ python3.6 manage.py test neighbor
 ```
 ## Deployment
 
